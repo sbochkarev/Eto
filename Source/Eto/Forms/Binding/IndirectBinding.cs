@@ -147,6 +147,15 @@ namespace Eto.Forms
 			);
 		}
 
+		public IndirectBinding<object> Convert(IValueConverter converter, object conveterParameter = null, CultureInfo culture = null)
+		{
+			culture = culture ?? CultureInfo.InvariantCulture;
+			return Convert<object>(
+				val => converter.Convert(val, typeof(object), conveterParameter, culture),
+				val => (T)converter.ConvertBack(val, typeof(T), conveterParameter, culture)
+			);
+		}
+
 		/// <summary>
 		/// Casts this binding value to another (compatible) type.
 		/// </summary>

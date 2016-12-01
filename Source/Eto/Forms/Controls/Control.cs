@@ -50,6 +50,14 @@ namespace Eto.Forms
 
 		static readonly object TagKey = new object();
 
+		static readonly object ResourcesKey = new object();
+
+		public Dictionary<object, object> Resources
+		{
+			get { return Properties.Create<Dictionary<object, object>>(ResourcesKey); }
+			set { Properties.Set(ResourcesKey, value); }
+		}
+
 		#region Events
 
 		/// <summary>

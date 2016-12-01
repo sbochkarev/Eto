@@ -207,7 +207,7 @@
     <EmbeddedResource Include="Sections\Serialization\Json\Test.json">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sections\Serialization\Xaml\Test.xaml">
+    <EmbeddedResource Include="Sections\Serialization\Xaml\Test.xeto">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\TestIcon.ico" />

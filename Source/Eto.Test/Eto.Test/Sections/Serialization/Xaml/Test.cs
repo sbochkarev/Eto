@@ -3,12 +3,27 @@ using Eto.Forms;
 using Eto.Serialization.Xaml;
 using System.Windows.Input;
 using System.Diagnostics;
+using System.Collections.Generic;
+
+
 #if NET40
 using ICommand = Eto.Forms.ICommand;
 #endif
 
 namespace Eto.Test.Sections.Serialization.Xaml
 {
+	public class MyConverter : IValueConverter
+	{
+		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+		{
+			return System.Convert.ToString(value) + " (converted)";
+		}
+		public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+		{
+			return value;
+		}
+	}
+
 	public class Test : Panel
 	{
 		public class MyModel
@@ -32,6 +47,13 @@ namespace Eto.Test.Sections.Serialization.Xaml
 
 		protected CheckBox MyCheckBox { get; set; }
 		protected TextArea MyTextArea { get; set; }
+		DropDown myDropDown;
+
+		class MyItem
+		{
+			public string MyText { get; set; }
+		}
+
 
 		public Test()
 		{
@@ -40,6 +62,11 @@ namespace Eto.Test.Sections.Serialization.Xaml
 
 			XamlReader.Load(this);
 
+			var items = new List<MyItem>();
+			items.Add(new MyItem { MyText = "My Item 1" });
+			items.Add(new MyItem { MyText = "My Item 2" });
+			items.Add(new MyItem { MyText = "My Item 3" });
+			myDropDown.DataStore = items;
 			sw.Stop();
 			Log.Write(this, "loaded in {0} seconds", sw.Elapsed.TotalSeconds);
 
